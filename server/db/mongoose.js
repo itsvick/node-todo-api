@@ -3,7 +3,9 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB || 'mongodb://localhost:27017/TodoApp')
+console.log('process.env.MONGODB', process.env.MONGODB);
+
+mongoose.connect(process.env.MONGODB)
     .then(() => {
         console.log('database connected');
     })
