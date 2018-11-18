@@ -5,7 +5,7 @@ require('dotenv').config();
 mongoose.Promise = global.Promise;
 console.log('process.env.MONGODB', process.env.MONGODB);
 
-mongoose.connect(process.env.MONGODB)
+mongoose.connect(process.env.MONGODB || 'mongodb:127017//localhost:30000')
     .then(() => {
         console.log('database connected');
     })
