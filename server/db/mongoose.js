@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 
-import dotenv from 'dotenv';
-
 require('dotenv').config();
 
 mongoose.Promise = global.Promise;
