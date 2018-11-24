@@ -83,6 +83,27 @@ app.delete('/todos/:id', (req, res) => {
         res.status(404).send();
     }
 });
+
+app.post('/users', (req, res) => {
+    const { email, password } = req.body;
+    const newUser = new User({ email, password });
+
+    newUser.save()
+        .then(() => {
+            console.log('coming here12121');
+            // res.send(user);
+            return newUser.generateAuthToken();
+        }).then((token) => {
+            console.log('coming here');
+
+            res.header('x-auth', token).send(newUser);
+        })
+        .catch((error) => {
+            res.status(400).send(error);
+        });
+});
+
+
 app.listen(port, () => {
     console.log(`Started on port ${port}`);
 });
