@@ -5,6 +5,7 @@ const { ObjectID } = require('mongodb');
 
 const { Todo } = require('./models/todo');
 const { User } = require('./models/user');
+const { authenticate } = require('./middleware/authenticate');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -101,6 +102,10 @@ app.post('/users', (req, res) => {
         .catch((error) => {
             res.status(400).send(error);
         });
+});
+
+app.get('/users/me', authenticate, (req, res) => {
+    res.send(req.user);
 });
 
 
